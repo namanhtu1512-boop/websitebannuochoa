@@ -24,12 +24,12 @@
                 echo "Lỗi" . $e->getMessage();
             }
         }
-        public function insertBooking($TourID, $LoaiKhach, $TenNguoiDat, $SDT, $Email, $NgayKhoiHanhDuKien, $NgayVe, $TongSoKhach, $NCC_TourID, $TrangThaiID)
+        public function insertBooking($TourID, $LoaiKhach, $TenNguoiDat, $SDT, $Email, $NgayKhoiHanhDuKien, $NgayVe, $TongSoKhach, $NCC_TourID)
     // ⚠️ THÊM $NCC_TourID VÀO DANH SÁCH THAM SỐ
     {
         try {
-            $sql = "INSERT INTO `booking` (`TourID`,`LoaiKhach`, `TenNguoiDat`, `SDT`, `Email`, `NgayKhoiHanhDuKien`,`NgayVe`, `TongSoKhach`, `NCC_TourID`, `TrangThaiID`) 
-                    VALUES (:TourID, :LoaiKhach, :TenNguoiDat, :SDT, :Email, :NgayKhoiHanhDuKien, :NgayVe, :TongSoKhach, :NCC_TourID, :TrangThaiID);";
+            $sql = "INSERT INTO `booking` (`TourID`,`LoaiKhach`, `TenNguoiDat`, `SDT`, `Email`, `NgayKhoiHanhDuKien`,`NgayVe`, `TongSoKhach`, `NCC_TourID`) 
+                    VALUES (:TourID, :LoaiKhach, :TenNguoiDat, :SDT, :Email, :NgayKhoiHanhDuKien, :NgayVe, :TongSoKhach, :NCC_TourID);";
             
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
@@ -42,7 +42,7 @@
                 ':NgayKhoiHanhDuKien' => $NgayKhoiHanhDuKien,
                 ':TongSoKhach' => $TongSoKhach,
                 ':NCC_TourID' => $NCC_TourID, // ⚠️ THÊM THAM SỐ RÀNG BUỘC
-                ':TrangThaiID' => $TrangThaiID // ⚠️ THÊM THAM SỐ RÀNG BUỘC
+            // ⚠️ THÊM THAM SỐ RÀNG BUỘC
             ]);
 
             return true;
@@ -90,21 +90,7 @@
             }
         }
 
-        public function updateStatus($bookingID, $newStatus)
-    {
-        try {
-            $sql = "UPDATE booking SET TrangThai = :TrangThai WHERE BookingID = :BookingID";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute([
-                ':TrangThai' => $newStatus,
-                ':BookingID' => $bookingID
-            ]);
-            return true;
-        } catch (Exception $e) {
-            echo "Lỗi: " . $e->getMessage();
-            return false;
-        }
-    }
+
 }
 
 

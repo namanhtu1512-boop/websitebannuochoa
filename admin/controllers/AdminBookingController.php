@@ -40,7 +40,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $TourID = $_POST['TourID'] ?? null;
-        var_dump($TourID);
+        
         $LoaiKhach = $_POST['LoaiKhach'] ?? null;
         $TenNguoiDat = $_POST['TenNguoiDat'] ?? null;
         $SDT = $_POST['SDT'] ?? null;
@@ -50,7 +50,7 @@
         $TongSoKhach = $_POST['TongSoKhach'] ?? null;
         // ⚠️ THÊM DÒNG NÀY:
         $NCC_TourID = $_POST['NCC_TourID'] ?? null; 
-        $TrangThaiID = $_POST['TrangThaiID'] ?? null; 
+   
 
         $errors = [];
         // ... (Kiểm tra lỗi nếu cần)
@@ -66,7 +66,7 @@
                 $NgayVe,
                 $TongSoKhach,
                 $NCC_TourID,
-                $TrangThaiID
+           
             );
 
             // Chuyển hướng thành công
@@ -101,22 +101,6 @@
         
     }
 
-    public function cancelBooking()
-    {
-        $id = $_GET['id'] ?? null;
-        
-        if (empty($id)) {
-            // Xử lý lỗi nếu không có ID
-            header("location:" . BASE_URL_ADMIN . '?act=booking');
-            exit();
-        }
-
-        // 1. Cập nhật trạng thái thành 'Hủy'
-        $this->modelBooking->updateStatus($id, 'Hủy'); 
-
-        // 2. Chuyển hướng về trang danh sách Booking
-        header("location:" . BASE_URL_ADMIN . '?act=list-booking');
-        exit();
-    }
+  
 }
 ?>
