@@ -1,0 +1,44 @@
+<!-- //composer require eftec/bladeone -->
+<!-- //các file view sử dụng tên "name.blade.php" -->
+<!-- thay thế file helper = helpers -->
+ <!-- sau khi cập nhật composer.json thì chạy lại "composer dump-autoload" -->
+ <!-- sửa base_url=> APP_URL trong file helpers.php -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Danh sách khách hàng</title>
+</head>
+
+<body>
+ <h2>Danh sách khách hàng</h2>
+
+ <table border="1" cellspacing=0>
+ <thead>
+ <th>STT</th>
+ <th>Họ tên</th>
+ <th>Hình ảnh</th>
+ <th>Email</th>
+ <th>SĐT</th>
+ <th>Ngày sinh</th>
+ <th>Trạng thái</th>
+ </thead>
+ <tbody>
+ <?php foreach ($customers as $key => $customer) : ?>
+ <tr>
+ <td><?= $key + 1 ?></td>
+ <td><?= $customer->ho_ten ?></td>
+ <td><?= $customer->hinh_anh ?></td>
+ <td><?= $customer->email ?></td>
+ <td><?= $customer->so_dien_thoai ?></td>
+ <td><?= $customer->ngay_sinh ?></td>
+ <td><?= $customer->trang_thai == 1 ? 'Hoạt động' : 'Khóa' ?></td>
+ </tr>
+ <?php endforeach; ?>
+ </tbody>
+ </table>
+</body>
+
+</html>
